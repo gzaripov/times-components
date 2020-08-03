@@ -78,8 +78,11 @@ export default async function main({
           });
         }
 
-        if (argv.bail && suggestions.length) {
+        const dependentPackages = suggestions.filter(([,, independent]) => !independent)
+
+        if (argv.bail && dependentPackages.length) {
           exit(1);
+          log("Some packages has invalid dependencies, fix dependencies versions or make package independent by adding independent: true to package.json");
           return Promise.resolve();
         }
 

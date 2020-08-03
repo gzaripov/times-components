@@ -151,7 +151,8 @@ export function getSuggestions(todo) {
           version
         ])
         .filter(x => x[1])
-    ]
+    ],
+    packageJson.independent || false
   ]);
 }
 
